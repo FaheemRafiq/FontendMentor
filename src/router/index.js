@@ -13,6 +13,33 @@ const router = createRouter({
       name: 'QRcode',
       component: () => import("../components/QRCode.vue"),
     },
+    {
+      path: '/card',
+      name: 'Card',
+      component: () => import("../components/Card.vue"),
+    },
+    {
+      path: '/form',
+      name: 'Form',
+      component: () => import("../MultiSetupForm/MainLayout.vue"),
+      children:[
+        {
+          path: '',
+          component: () => import("../components/FormInfo.vue"),
+        },{
+          path:'plan',
+          component: () => import("../components/FormPlan.vue")
+        },
+        {
+          path:'add',
+          component: () => import("../components/FormAddOns.vue")
+        },
+        {
+          path:'summary',
+          component: () => import("../components/FormSummary.vue")
+        }
+      ]
+    },
   ]
 })
 

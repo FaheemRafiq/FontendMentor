@@ -9,7 +9,9 @@
                 Frontend Mentor Projects</h1>
         </div>
         <div>
-            <a href="/qrcode" class="text-blue-500 underline border-r-2 border-gray-400 px-2">QRCode Project</a>
+            <a href="/qrcode" class="text-blue-500 underline border-r-2 border-gray-400 px-2">QRCode</a>
+            <a href="/card" class="text-blue-500 underline border-r-2 border-gray-400 px-2">Card</a>
+            <a href="/form" class="text-blue-500 underline border-r-2 border-gray-400 px-2">Multi-Setup Form</a>
         </div>
     </div>
 </template>
