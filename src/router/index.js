@@ -37,7 +37,11 @@ const router = createRouter({
         {
           path:'summary',
           component: () => import("../components/FormSummary.vue")
-        }
+        },
+        {
+          path:'thanks',
+          component: () => import("../components/ThanksMessage.vue")
+        },
       ]
     },
   ]

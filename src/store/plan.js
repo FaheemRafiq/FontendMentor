@@ -8,32 +8,28 @@ export const usePlanStore = defineStore("plan", () => {
     const SelectedPlan = reactive({
         name: "Arcade",
         monthlyPrice: "9",
-        yearlyPrice: "",
+        yearlyPrice: "90",
     });
     const SelectedAddOns = reactive([]);
-
-    const setPlan = (plan, isYearly) => {
+    // set plan
+    const setPlan = (plan) => {
         SelectedPlan.name = plan.name;
-        if (isYearly) {
-            SelectedPlan.yearlyPrice = plan.yearlyPrice;
-            SelectedPlan.monthlyPrice = "";
-        }
-        else{
-            SelectedPlan.monthlyPrice = plan.monthlyPrice;
-            SelectedPlan.yearlyPrice = "";
-        }
+        SelectedPlan.monthlyPrice = plan.monthlyPrice;
+        SelectedPlan.yearlyPrice = plan.yearlyPrice;
     };
+    // set add-ons
     const setAddOn = (addOns) => {
         SelectedAddOns.push(addOns);
     };
+    // remove add-ons if already selected
     const removeAddOn = (addOns) => {
         let index = SelectedAddOns.indexOf(addOns);
         SelectedAddOns.splice(index, 1);
     };
-
+    // Total Price of the plan and add-ons
     const getTotal = () => {
         let total = 0;
-        if (SelectedPlan.yearlyPrice) {
+        if (isYearly.value) {
             total += parseInt(SelectedPlan.yearlyPrice);
         } else {
             total += parseInt(SelectedPlan.monthlyPrice);

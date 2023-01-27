@@ -34,7 +34,7 @@ const Plans = [
     ];
 
 function add(plan) {
-    useStore.setPlan(plan, isYearly.value);
+    useStore.setPlan(plan);
 }
 
 watch(isYearly, (value) => {
