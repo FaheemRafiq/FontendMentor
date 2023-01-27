@@ -14,7 +14,7 @@ defineProps({
     <label for="email" class="text-lg">Email Address</label>
     <span
       :class="
-        false
+        validEmail.$error
           ? 'border-2 border-red-600 focus-within:border-red-600'
           : ''
       "
@@ -31,6 +31,8 @@ defineProps({
         @input="$emit('update:email', $event.target.value)"
       />
     </span>
-    <span v-if="false" class="text-sm absolute text-yellow-400"></span>
+    <span v-if="validEmail.$error" class="text-sm absolute text-red-600">{{
+      validEmail.$errors[0].$message
+    }}</span>
   </div>
 </template>

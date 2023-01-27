@@ -1,6 +1,6 @@
 <script setup>
 defineEmits(["update:value"]);
-defineProps(["value", "isValid", "placeholder", "title"]);
+defineProps(["value", "placeholder", "title", "validValue"]);
 </script>
 
 <template>
@@ -8,7 +8,7 @@ defineProps(["value", "isValid", "placeholder", "title"]);
     <label for="username" class="text-lg">{{ title }}</label>
     <span
       :class="
-        false
+        validValue.$error
           ? 'border-2 border-red-600 focus-within:border-red-600'
           : ''
       "
@@ -23,9 +23,10 @@ defineProps(["value", "isValid", "placeholder", "title"]);
         :placeholder="placeholder"
         :value="value"
         @input="$emit('update:value', $event.target.value)"
-        required
       />
     </span>
-    <span v-if="false" class="text-sm absolute text-red-600"></span>
+    <span v-if="validValue.$error" class="text-sm absolute text-red-600">{{
+      validValue.$errors[0].$message
+    }}</span>
   </div>
 </template>

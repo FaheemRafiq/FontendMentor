@@ -19,7 +19,6 @@ const confirm = () => {
   spinner.value = true;
   setTimeout(() => {
     router.push('/form/thanks');
-    spinner.value = false;
   }, 1000);
 }
 </script>
