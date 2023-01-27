@@ -1,13 +1,16 @@
 <script setup>
 import ButtonComponent from "./ButtonComponent.vue";
 import { useRouter } from "vue-router";
-import { ref, watch } from "vue";
+import { ref, watch, onBeforeUnmount } from "vue";
 import arcade from "../assets/MultiImages/icon-arcade.svg";
 import advanced from "../assets/MultiImages/icon-advanced.svg";
 import pro from "../assets/MultiImages/icon-pro.svg";
+import { usePlanStore } from "../store/plan";
 const router = useRouter();
-const isYearly = ref(false);
 
+const useStore = usePlanStore();
+const isYearly = ref(useStore.isYearly);
+const selectedPlan = ref(useStore.SelectedPlan);
 
 const Plans = [
         {
@@ -24,11 +27,23 @@ const Plans = [
         },
         {
             image : pro,
-            name: "Arcade",
+            name: "Pro",
             monthlyPrice: "15",
             yearlyPrice: "150",
         },
     ];
+
+function add(plan) {
+    useStore.setPlan(plan, isYearly.value);
+}
+
+watch(isYearly, (value) => {
+    useStore.setPlan(selectedPlan.value, value);
+})
+
+onBeforeUnmount(() => {
+    useStore.isYearly = isYearly.value;
+});
 </script>
 
 <template>
@@ -42,7 +57,7 @@ const Plans = [
     <div class="w-full h-80">
       <div class="h-44">
         <div class="flex gap-4">
-          <div v-for="(plan, index) in Plans" :key="index"  class="border-2 border-gray-300 rounded-lg p-5 flex-1 hover:border-blue-600 hover:bg-gray-50 cursor-pointer" :class="{'border-blue-600 bg-gray-50': false}">
+          <div @click="add(plan)" v-for="(plan, index) in Plans" :key="index"  class="border-2 border-gray-300 rounded-lg p-5 flex-1 hover:border-blue-600 hover:bg-gray-50 cursor-pointer" :class="{'border-blue-600 bg-gray-50': selectedPlan.name == plan.name}">
             <img :src="plan.image" :alt="plan.name">
             <div class="mt-8">
               <h1 class="text-lg font-bold">{{ plan.name }}</h1>
