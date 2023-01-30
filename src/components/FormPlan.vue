@@ -54,16 +54,15 @@ onBeforeUnmount(() => {
         You have the option of monthly or yearly billing.
       </p>
     </div>
-    <div class="w-full h-96 md:h-80 border-2">
+    <div class="w-full h-96 md:h-80">
       <div class="h-44">
         <div class="flex flex-col md:flex-row gap-4">
           <div @click="add(plan)" v-for="(plan, index) in Plans" :key="index"  class="border-2 border-gray-300 rounded-lg p-2 md:p-3 lg:p-5 flex-1 flex md:inline-block items-center  hover:border-blue-600 hover:bg-gray-50 cursor-pointer" :class="{'border-blue-600 bg-gray-50': selectedPlan.name == plan.name}">
-            <div class="flex flex-col xs:inline-block">
-              <h1 class="text-lg font-bold md:hidden inline-block">{{ plan.name }}</h1>
+            <div class="">
               <img :src="plan.image" :alt="plan.name">
             </div>
-            <div class="ml-auto md:mt-8">
-              <h1 class="text-lg font-bold hidden md:inline-block">{{ plan.name }}</h1>
+            <div class="ml-2 md:mt-8">
+              <h1 class="text-lg font-bold">{{ plan.name }}</h1>
               <div v-if="isYearly">
                 <p class="text-gray-400 text-md">${{plan.yearlyPrice}}/yr</p>
                 <p class="text-sm">2 Month Free</p>
@@ -74,7 +73,7 @@ onBeforeUnmount(() => {
         </div>
       </div>
       <!-- Monthly/Yearly -->
-        <div class="bg-gray-100 p-3 mt-32 sm:mt-12 md:mt-8 rounded-lg flex justify-center relative">
+        <div class="bg-gray-100 mt-36 p-3 md:mt-5 lg:mt-8  rounded-lg flex justify-center relative">
           <div class="flex space-x-3">
             <p class="font-bold text-blue-900">Monthly</p>
             <label class="relative inline-flex items-center cursor-pointer">
