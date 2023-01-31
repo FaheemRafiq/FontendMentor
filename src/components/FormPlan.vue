@@ -61,7 +61,7 @@ onBeforeUnmount(() => {
             <div class="">
               <img :src="plan.image" :alt="plan.name">
             </div>
-            <div class="ml-2 md:mt-8">
+            <div class="ml-2 md:ml-0 md:mt-8">
               <h1 class="text-lg font-bold">{{ plan.name }}</h1>
               <div v-if="isYearly">
                 <p class="text-gray-400 text-md">${{plan.yearlyPrice}}/yr</p>

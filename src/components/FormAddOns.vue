@@ -75,7 +75,7 @@ function add(addOn) {
         </div>
       </div>
     </div>
-    <div class="mt-4 flex w-full">
+    <div class="mt-16 lsm:mt-4 flex w-full">
       <button @click="router.push('/form/plan')" class="text-blue-900 font-bold hover:text-blue-600">Go Back</button>
       <ButtonComponent @click="router.push('/form/summary')" class="ml-auto">Next Step</ButtonComponent>
     </div>

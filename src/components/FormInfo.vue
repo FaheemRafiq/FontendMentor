@@ -4,7 +4,7 @@ import InputEmail from "./InputEmail.vue";
 import ButtonComponent from "./ButtonComponent.vue";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../store/user";
-import { ref, computed, reactive } from "vue";
+import { ref, computed, reactive, onMounted } from "vue";
 import { useVuelidate } from "@vuelidate/core";
 import {
   required,
@@ -24,7 +24,7 @@ const user = reactive({
 });
 
 const rules = computed(() => ({
-  name: { required, alphaNum, minLength: minLength(4) },
+  name: { required, minLength: minLength(4) },
   email: { required, email },
   phone: { required, minLength: minLength(10) },
 }));
@@ -34,9 +34,7 @@ const v$ = useVuelidate(rules, user);
 const handleSubmit = () => {
   v$.value.$validate();
   if(!v$.value.$error){
-
     useUser.setUser(user);
-    console.log(useUser.user);
     router.push("/form/plan");
   }
 };
