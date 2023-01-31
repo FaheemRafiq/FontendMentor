@@ -10,8 +10,8 @@ export const useUserStore = defineStore("user", () => {
         email: "",
     });
     const setUser = (tempUser) => {
+        user.name = tempUser.name;
         user.email = tempUser.email;
-        user.name = tempUser.username;
         user.phone = tempUser.phone;
     };
     // get user
